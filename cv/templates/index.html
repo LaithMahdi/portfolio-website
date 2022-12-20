@@ -1,0 +1,423 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href=" {% static '/css/style.css' %} ">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="{% static '/js/script.js' %}"></script>
+    <title>Portfilio</title>
+</head>
+<nav class="cc-navbar navbar navbar-expand-lg navbar-light fixed-top shadow-lg">
+    <div class="container">
+    {% for a in profil %}
+      <a class="navbar-brand fw-bolder syFont text-uppercase text-info" href="#">{{ a.nom }} {{ a.prenom }}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="#">Acceuil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#projet">Projet</a>
+          </li>
+          <li class="nav-item">
+            <a href="#skill" class="nav-link text-light">Compétences</a>
+          </li>
+          <li class="nav-item">
+            <a href="#experiences" class="nav-link text-light">Expériences</a>
+          </li>
+          <li class="nav-item">
+            <a href="#certifications" class="nav-link text-light">Certifications</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link text-light">Contact</a>
+          </li>
+        </ul>
+        <div class="">
+            <a href="{% url 'acceuil' %}" class="btn btn-outline-info mx-2"> Configuration</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </nav>
+
+<body class="syFont">
+    <section class="informations">
+        {% for a in profil %}
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                   <div class="intro">
+                    <h1 class="spartan fw-normale text-light">Salut, je suis <label class="name text-info syFont fw-light" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">{{ a.nom }} {{ a.prenom }}</label></h1>
+                    <h2 class="syFont fw-bold text-info" class="input" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="1500">{{ a.poste }}</h2>
+                   </div>
+                   <p class="text-light">
+                    {{ a.description }}
+                   </p>
+                   <button class="btn btn-info">Contactez nous</button>
+                   <button type="submit" onclick="window.open('/static/Cv_laith mahdi.pdf')" class="btn btn-outline-info">Télécharger cv</button>
+                   <div class="" style="position: absolute; bottom: 0;">
+                        <div class="icones d-flex">
+                            <div class="icon">
+                                {% if a.tel != '' %}
+                                    <a href="{{ a.tel }}" class="fs-3"><i class="fa-solid fa-phone"></i></a>
+                                {% else %}
+                                    <a href=""></a>
+                                {% endif %}
+                            </div>
+
+                            <div class="icon ms-2">
+                                {% if a.linkdin != '' %}
+                                    <a href="{{ a.linkdin }}" class="fs-3"><i class="fa-brands fa-linkedin"></i></a>
+                                {% else %}
+                                    <a href=""></a>
+                                {% endif %}
+                            </div>
+
+                            <div class="icon ms-2">
+                                {% if a.git != '' %}
+                                    <a href="{{ a.git }}" class="fs-3"><i class="fa-brands fa-github"></i></a>
+                                {% else %}
+                                    <a href=""></a>
+                                {% endif %}
+                            </div>
+
+                            <div class="icon  ms-2">
+                                {% if a.behance != '' %}
+                                    <a href="{{ a.behance }}" class="fs-3"><i class="fa-brands fa-behance"></i></a>
+                                {% else %}
+                                    <a href=""></a>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="icon ms-2">
+                                {% if a.fb != '' %}
+                                    <a href="{{ a.fb }}" class="fs-3"><i class="fa-brands fa-facebook"></i></a>
+                                {% else %}
+                                    <a href=""></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                <div class="col-4">
+                    <div class="photo d-flex align-items-center justify-content-center">
+                        <img src="{{ a.photo.url }}" alt="" class="img-fluid rounded-pill rounded-3 w-75" data-aos="fade-in-down" data-aos-easing="linear"
+                        data-aos-duration="1500">
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    
+    <section class="services py-5" id="services">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <span class="fs-6 text-dark">Que puis-je faire pour vous ?</span>
+                <span class="syFont fw-bold fs-2" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">Services</span>
+            </div>
+            <div class="row">
+                {% for a in services %}
+                <div class="col-md-4 col-sm-6 col-12 my-2" >
+                    <div class="box border border-1 rounded-3 bg-white" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                        <div class="inf text-center">
+                            <div class="icon pt-3"><i class="{{ a.icon }} fs-1"></i></div>
+                            <div class="title mx-2 pt-2"><h5>{{ a.nom }}</h5></div>
+                        </div>
+                        <p class="description pt-1 px-4 pb-3">{{ a.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="projet" class="projet my-5 py-5">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <span class="fs-6 text-light">Cliquez pour consulter mon travail ?</span>
+                <span class="syFont fw-bold fs-2 text-info" data-aos-easing="linear" data-aos-duration="1000">Travaux récents</span>
+            </div>
+            <div class="row mt-2">
+                {% for a in projet %}
+                <div class="col-md-3 col-lg-4 col-sm-6 col-16 my-2">
+                    <div class="box border border-1 p-3 shadow rounded-3" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                        <div class="icones d-flex justify-content-between">
+                            <i class="fa-regular fa-folder fs-4 text-info"></i>
+                            <div class="link">
+                                {% if a.lien|slice:'12:19' == 'behance' %}
+                                    <a href="{{ a.lien }}"><i class="fa-brands fa-square-behance fs-4 text-light"></i></a>
+                                {% else %}
+                                    <a href="{{ a.lien }}"><i class="fa-brands fa-square-github fs-4 text-light"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="title text-light">
+                            <h5>{{ a.nom }}</h5>
+                            <span>{{ a.date|date:'F - Y' }}</span>
+                            <p class="pt-2">{{ a.tache }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="skill" class="skill my-5 py-5">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <span class="fs-6">Consulter mes Compétences</span>
+                <span class="syFont fw-bold fs-2" data-aos-easing="linear" data-aos-duration="1000">Compétences Techniques</span>
+            </div>
+            <div class="row">
+                {% for a in skill%}
+                    {% if a.type == 1 %}
+                        <div class="col-md-4 col-sm-6 col-6 col-lg-3">
+                            <div class="box m-2" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                                <div class="title">
+                                    <h5>{{ a.nom }}</h5>
+                                </div>
+                                <div class="progress" style="height: 25px;">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ a.niveau }}%;" aria-valuenow="{{ a.niveau }}" aria-valuemin="0" aria-valuemax="100">{{ a.niveau }}%</div>
+                                    <style>
+                                        @keyframes progressBar {
+                                            0% { width: 0; }
+                                            {{ a.niveau }}% { width: {{ a.niveau }}%; }
+                                        }
+                                        .progress-bar {
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            overflow: hidden;
+                                            color: #fff;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            background-color: #0dcaf0;
+                                            transition: width .6s ease;
+                                            animation: progressBar 3s ease-in-out;
+                                            animation-fill-mode:both;
+                                        }
+                                    </style>
+                                </div>
+                            </div>   
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+
+
+    <section id="experiences" class="experiences my-5 py-5">
+        <style>
+   
+        </style>
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <span class="fs-6 text-light">Consulter mes</span>
+                <span class="syFont fw-bold fs-2 text-info" data-aos-easing="linear" data-aos-duration="1000">Expériences Professionnelles</span>
+            </div>
+            <div class="row  d-flex justify-content-around align-items-center flex-column mt-3">
+                {% for a in exp %}
+                <div class="col-md-8 col-lg-4 col-sm-10 col-10">
+                    <div class="box my-3 text-light" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                        <hr>
+                        <div class=" d-flex justify-content-between">
+                            <h5 class="">{{ a.post }}</h5>
+                            <i class="fa-solid fa-briefcase fs-4"></i>
+                        </div>
+                        <div class="">
+                            <p style="margin-top: -10px;">{{ a.date|date:'F - Y' }}</p>
+                            <p>{{ a.tache }}</p>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications my-5 py-5">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <span class="fs-6">Consulter mes</span>
+                <span class="syFont fw-bold fs-2" data-aos-easing="linear" data-aos-duration="1000">Professional Certificates</span>
+            </div>
+            <div class="row">
+                {% for x in certicat %}
+                <div class="col-md-6">
+                    <div class="box border border-2 my-3" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                      <img src="{{ x.photo.url  }}" class="img-fluid image" alt="...">
+                      <div class="box-body">
+                        <h5 class="box-title">{{ x.nom }}</h5>
+                        <p class="box-text">{{ x.date }}</p>
+                        <a class="btn btn-info" href="{{ x.lien }}"> Voir le certificat</a>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <section class="contact mt-5 py-5" id="contact">
+        <div class="container">
+            <div class="d-flex">
+                <span class="syFont fw-bold fs-2 text-info mb-3" data-aos-easing="linear" data-aos-duration="1000">Contact</span>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 text-light">
+                    <div class="box">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Votre nom :</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nom">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Votre mail :</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Tapez votre message</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="btn btn-outline-info" value="Envoyer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-sm-6 col-12">
+                    <div class="box">
+                        {% for a in profil %}
+                        <h3 class="text-info fw-bold text-uppercase pb-3">{{ a.nom }} {{ a.prenom }}</h3>
+                        <p class="text-light">{{ a.description }}</p>
+                        <div class="">
+                            <div class="icones d-flex">
+                                <div class="icon">
+                                    {% if a.tel != '' %}
+                                        <a href="{{ a.tel }}" class="fs-3"><i class="fa-solid fa-phone"></i></a>
+                                    {% else %}
+                                        <a href=""></a>
+                                    {% endif %}
+                                </div>
+    
+                                <div class="icon ms-2">
+                                    {% if a.linkdin != '' %}
+                                        <a href="{{ a.linkdin }}" class="fs-3"><i class="fa-brands fa-linkedin"></i></a>
+                                    {% else %}
+                                        <a href=""></a>
+                                    {% endif %}
+                                </div>
+    
+                                <div class="icon ms-2">
+                                    {% if a.git != '' %}
+                                        <a href="{{ a.git }}" class="fs-3"><i class="fa-brands fa-github"></i></a>
+                                    {% else %}
+                                        <a href=""></a>
+                                    {% endif %}
+                                </div>
+    
+                                <div class="icon  ms-2">
+                                    {% if a.behance != '' %}
+                                        <a href="{{ a.behance }}" class="fs-3"><i class="fa-brands fa-behance"></i></a>
+                                    {% else %}
+                                        <a href=""></a>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="icon ms-2">
+                                    {% if a.fb != '' %}
+                                        <a href="{{ a.fb }}" class="fs-3"><i class="fa-brands fa-facebook"></i></a>
+                                    {% else %}
+                                        <a href=""></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-sm-6 col-6">
+                    <h3 class="text-info text-center pb-3">Liens rapide</h3>
+                    <ul class="list-group-footer text-center">
+                        <li class=""><a href="#top" class="text-decoration-none text-light">Acceuil</a></li>
+                        <li class=""><a href="#services" class="text-decoration-none text-light">Services</a></li>
+                        <li class=""><a href="#projet" class="text-decoration-none text-light">Projet</a></li>
+                        <li class=""><a href="#skill" class="text-decoration-none text-light">Compétences</a></li>
+                        <li class=""><a href="#experiences" class="text-decoration-none text-light">Expériences</a></li>
+                        <li class=""><a href="#certifications" class="text-decoration-none text-light">Certifications</a></li>
+                        <li class=""><a href="#contact" class="text-decoration-none text-light">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-sm-6 col-6">
+                    <h3 class="text-info text-center pb-3">Mes services</h3>
+                    {% for a in services %}
+                    <div class="box">
+                    <ul class="list-group-footer text-center">
+                        <li class=""><a href="" class="text-decoration-none text-light">{{ a.nom }}</a></li>
+                    </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6 col-6">
+                    {% for a in profil %}
+                    <h3 class="text-info text-center pb-3">Contact</h3>
+                    <div class="text-center text-light">
+                        <i class="fa-solid fa-envelope-open fs-2"></i>
+                        <h6 class="py-2">{{ a.mail}}</h6>
+                    </div>
+
+                    <div class="text-center text-light">
+                        <i class="fa-solid fa-phone fs-2"></i>
+                        <h6 class="py-2">{{ a.tel }}</h6>
+                    </div>
+
+                    <div class="text-center text-light">
+                        <i class="fa-solid fa-map-pin fs-2"></i>
+                        <h6 class="py-2">{{ a.lieu }}</h6>
+                    </div>
+                    <ul class="list-group-footer text-center">
+                        <li class=""><a href="#top" class="text-decoration-none text-light"></a></li>
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="row w-100 text-center pt-2">
+        <div class="col">
+            {% for a in profil %}
+            <p>Tous droits réservés © 2022 {{ a.nom }} {{ a.prenom }}.</p>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

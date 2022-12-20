@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="{% static '/js/script.js' %}"></script>
+    <title>Modifier le service</title>
+</head>
+<body id="body">
+    <section class="image_infGeneral">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center" style="height: 100vh; width: 100%;">
+             <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-header">
+                        <h2>Modifier le service</h2>
+                    </div>
+                
+                <div class="card-body">
+                    <form action="update_services_action/{{ service.id }}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="">
+                            <label class="form-label">Nom :</label>
+                            <input type="text" name="nom" id="" class="form-control" value="{{ service.nom }}">
+                        </div>
+                        <div class="">
+                            <label class="form-label">Icon de service :</label>
+                            <input type="text" name="icon" id="" class="form-control" value="{{ service.icon }}">
+                        </div>
+                        <div class="mt-1">
+                            <label class="form-label">Description de service :</label>
+                            <textarea  name="description" id="" class="form-control" rows="5">{{ service.description }}</textarea>
+                        </div>
+                        <div class="text-end">
+                            <input type="submit" value="Modifier" class="btn btn-primary w-100 mt-3">
+                        </div>
+                        
+                    </form>
+                </div>
+             </div>
+            </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

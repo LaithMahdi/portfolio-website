@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Ajouter une description</title>
+</head>
+<body id="body">
+    
+    <section>
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center" style="height: 100vh; width: 100%;">
+             <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-header">
+                        <h2>Ajouter une description</h2>
+                    </div>
+                
+                <div class="card-body">
+                    <form action="" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <div class="w-50">
+                                <label class="form-label">Nom :</label>
+                                <input type="text" class="form-control" name="nom" required>
+                            </div>
+                            <div class="w-50 ms-2">
+                                <label class="form-label">Prenom :</label>
+                                <input type="text" class="form-control" name="prenom" required>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="w-50"><label class="form-label">poste :</label>
+                                <input type="text" class="form-control" name="poste" required></div>
+                            <div class="w-50 ms-2">
+                                <label class="form-label">Lieu :</label>
+                                <input type="text" class="form-control" name="lieu" required>
+                            </div>
+                        </div>
+                        <label for="form-label">Description :</label>
+                        <textarea name="description" class="form-control"></textarea>
+                        <div class="d-flex justify-content-between">
+                            <div class="w-50"><label class="form-label">Numéro de télephone :</label>
+                                <input type="text" class="form-control" name="tel" required></div>
+                            <div class="w-50 ms-2">
+                                <label class="form-label">Mail :</label>
+                                <input type="text" class="form-control" name="mail" required>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="w-50"><label class="form-label">Lien linkdin :</label>
+                                <input type="text" class="form-control" name="linkdin" required></div>
+                            <div class="w-50 ms-2">
+                                <label class="form-label">Lien behance :</label>
+                                <input type="text" class="form-control" name="behance" required>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="w-50"><label class="form-label">Lien de github :</label>
+                                <input type="text" class="form-control" name="git" required></div>
+                            <div class="w-50 ms-2">
+                                <label class="form-label">Lien facebook :</label>
+                                <input type="text" class="form-control" name="fb" required>
+                            </div>
+                        </div>
+                        <div class="mt-1">
+                            <label class="form-label">Photo :</label>
+                            <input class="form-control" type="file" id="formFile" name="photo"> 
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary my-2">Ajouter une description</button>
+                        </div>
+                        
+                    </form>
+                </div>
+             </div>
+            </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

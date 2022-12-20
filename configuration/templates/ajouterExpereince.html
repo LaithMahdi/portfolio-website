@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>Ajouter une description</title>
+</head>
+<body id="body">
+    <section>
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center" style="height: 100vh; width: 100%;">
+             <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-header">
+                        <h2>Ajouter une Expérience professionnelle</h2>
+                    </div>
+                
+                <div class="card-body">
+                    <form action="" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div class="">
+                            <label class="form-label">Nom :</label>
+                            <input type="text" name="nom" id="" class="form-control">
+                        </div>
+                        <div class="">
+                            <label class="form-label">Poste :</label>
+                            <input type="text" name="post" id="" class="form-control">
+                        </div>
+                        <div class="">
+                                <label class="form-label">Date :</label>
+                                <input type="text" name="date" id="" class="form-control" value="aaaa-mm-jj">
+                        </div>
+                        <div class="mt-1">
+                            <label class="form-label">Tâche :</label>
+                            <textarea  name="tache" id="" class="form-control" rows="5"></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary my-2">Ajouter une expérience</button>
+                        </div>
+                        
+                    </form>
+                </div>
+             </div>
+            </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
